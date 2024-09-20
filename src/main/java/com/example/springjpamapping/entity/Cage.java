@@ -17,6 +17,11 @@ public class Cage extends IdClass{
     @OneToOne
     private Animal animal;
 
+    public void addAnimal(Animal animal) {
+        animal.setCage(this);
+        animal = animal;
+    }
+
     public Cage(String cageNo, String location) {
         this.cageNo = cageNo;
         this.location = location;

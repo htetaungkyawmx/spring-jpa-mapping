@@ -4,12 +4,14 @@ import com.example.springjpamapping.dao.CategoryDao;
 import com.example.springjpamapping.entity.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class ZooService {
     private final CategoryDao categoryDao;
 
+    @Transactional
     public void createDb() {
         Cage cage1 = new Cage("S001","South");
         Cage cage2 = new Cage("N001","North");
@@ -33,6 +35,29 @@ public class ZooService {
         FoodItem foodItem4 = new FoodItem("Grains",300);
 
         //mapping
-        
+        cage1.addAnimal(animal1);
+        cage2.addAnimal(animal2);
+        cage3.addAnimal(animal3);
+        cage4.addAnimal(animal4);
+
+        category1.addAnimal(animal1);
+        category1.addAnimal(animal3);
+        category2.addAnimal(animal2);
+        category2.addAnimal(animal4 );
+
+        supplier1.addFoodItem(foodItem1);
+        supplier1.addFoodItem(foodItem2);
+        supplier2.addFoodItem(foodItem3);
+        supplier2.addFoodItem(foodItem4);
+
+        foodItem1.addAnimal(animal1);
+        foodItem1.addAnimal(animal3);
+        foodItem2.addAnimal(animal4);
+        foodItem3.addAnimal(animal2);
+        foodItem4.addAnimal(animal2);
+
+        categoryDao.save(category1);
+        categoryDao.save(category2);
+
     }
 }
