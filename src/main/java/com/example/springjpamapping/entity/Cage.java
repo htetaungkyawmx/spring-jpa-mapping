@@ -19,7 +19,7 @@ public class Cage extends IdClass{
 
     public void addAnimal(Animal animal) {
         animal.setCage(this);
-        animal = animal;
+        this.animal = animal;
     }
 
     public Cage(String cageNo, String location) {
