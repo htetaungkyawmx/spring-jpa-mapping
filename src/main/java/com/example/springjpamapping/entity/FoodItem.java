@@ -1,9 +1,6 @@
 package com.example.springjpamapping.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FoodItem extends IdClass{
+public class FoodItem extends IdClass {
     private String name;
     private int quantity;
 
@@ -23,6 +20,11 @@ public class FoodItem extends IdClass{
     private Supplier supplier;
 
     @ManyToMany
+    @JoinTable(
+            name = "food_item_animals",
+            joinColumns = @JoinColumn(name = "food_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "animal_id")
+    )
     private List<Animal> animals = new ArrayList<>();
 
     public void addAnimal(Animal animal) {
